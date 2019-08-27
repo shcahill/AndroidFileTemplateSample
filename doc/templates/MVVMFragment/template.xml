@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Fragment(MVVM)"
+    description="Fragment/ViewModel/Navigator/layout.xml set"
+    minApi="7"
+    minBuildApi="8">
+
+    <category value="Fragment" />
+
+    <dependency name="androidx.fragment" revision="8" />
+
+    <parameter
+        id="title"
+        name="Prefix"
+        type="string"
+        constraints="class|nonempty|unique"
+        default=""
+        help="接頭語です。Fragmentやレイアウトファイルに自動反映されます" />
+
+    <parameter
+        id="className"
+        name="Fragment Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="${title}Fragment"
+        help="Fragment名" />
+
+    <parameter
+        id="vmName"
+        name="ViewModel Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="ViewModel"
+        suggest="${title}ViewModel"
+        help="ViewModel名" />
+
+    <parameter
+        id="navigatorName"
+        name="Navigator Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="Navigator"
+        suggest="${title}Navigator"
+        help="Navigator名" />
+
+    <parameter
+        id="packageName"
+        name="Package Name"
+        type="string"
+        constraints="package"
+        help="Fragmentの配置場所"
+        suggest="ui.${classToResource(className)?replace('_', '')}"
+        default="ui.main"/>
+
+    <parameter
+        id="layoutName"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|nonempty|unique"
+        suggest="fragment_${classToResource(className)}"
+        help="layout.xml名" />
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
